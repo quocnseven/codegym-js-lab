@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: url(./images/background.jpg);
+}
+
+#main{
+
+}
+
+
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+
+#board {
+    display: flex;
+    justify-content: center;
+}
+
+#result{
+    display: flex;
+    justify-content: center;
+    color: rgb(231, 241, 35);
+    font-size: 30px;
+    background-color: rgb(29, 41, 15);
+    padding: 10px;
+    display: none;
+}
+
+#firework{
+    background-image: url();
+}
