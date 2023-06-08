@@ -5,6 +5,8 @@ let againBtn = document.getElementById('btn-restart')
 let boardbody = document.getElementById('boardbody');
 let btnplay = document.getElementById('btnplay');
 let result = document.getElementById('result');
+
+
 class Rewards {
     constructor (img, name){
         this.img = img;
@@ -33,8 +35,8 @@ awmJadeImg.src ="images/awmjade.jpg";
 barrettBornImg.src ="images/barrettbornbeast.jpg";
 logoImg.src ="images/cf.jpg";
 m4a1PredatorImg.src ="images/m4a1predator.webp";
-m4a1SilentImg.src ="images/m4a1silencer.jpg"
-unfortunateImg.src ="images/unfortunately.png"
+m4a1SilentImg.src ="images/m4a1silencer.jpg";
+unfortunateImg.src ="images/unfortunately.png";
 
 
 
@@ -57,28 +59,10 @@ var items = [ak47Born, ak47Royal, ak47Tran, awmGold, awmInfer, awmJade, barrettB
 var itemsLength = items.length;
 
 
-function randomItem(item){
-    var randomNum = Math.floor(Math.random()*itemsLength);
-    var itemRandoms = item[randomNum];
-    return itemRandoms;
-}
-var randomResult = randomItem(items);
 
-var unFortunateName = unfortunate.name;
 
-// kiem tra quay vao o "chuc ban may man lan sau"
-function checkResult (randomname){
-    if (randomname.name !== unFortunateName){
-        result.innerHTML = `Chúc mừng bạn nhận được: ${randomResult.name}`;
-    }else {
-        result.innerHTML = `${randomResult.name}`;
-    };
-};
 
-// ve canvas
-function drawItems (){
-    context.drawImage(randomResult.img,0,0,500, 500);
-}
+
 
 
 // show play btn
@@ -129,22 +113,41 @@ btnplay.addEventListener("click",function(){
 
 // an canvas  khi bam againBtn
 againBtn.addEventListener('click', function(){
-    stop()
+    again()
 })
+
+
 // run game
 function run(){
-    drawItems()
-    showResult()
+    function randomItem(item){
+        var randomNum = Math.floor(Math.random()*itemsLength);
+        var itemRandoms = item[randomNum];
+        return itemRandoms;
+    }
+
+    var randomResult = randomItem(items);
+    var unFortunateName = unfortunate.name;
+
+    // kiem tra quay vao o "chuc ban may man lan sau"
+    function checkResult (randomname){
+        if (randomname.name !== unFortunateName){
+            result.innerHTML = `Chúc mừng bạn nhận được: ${randomResult.name}`;
+        }else {
+            result.innerHTML = `${randomResult.name}`;
+        };
+    };
+    context.drawImage(randomResult.img,0,0,500, 500);
     checkResult(randomResult);
+    showResult()
     hidePlayBtn ()
     showAgainBtn()
+    canvas.style.opacity = '1';
    
 }
 
-function stop(){
-    drawItems()
-    hideResult()
-    hideCanvas()
+function again(){
+    context.drawImage(logo.img,0,0,500, 500);
+    canvas.style.opacity = '0';
     btnplay.style.display = 'flex';
     hideAgainBtn()
     result.style.display = 'none';
